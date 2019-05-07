@@ -1,0 +1,3 @@
+﻿  BSTree.cpp
+c:\users\illia\source\repos\bstree\bstree\bstree.cpp(212): warning C4715: 'BSTree::findKey': not all control paths return a value
+  BSTree.vcxproj -> C:\Users\illia\source\repos\BSTree\Debug\BSTree.exe
