@@ -5,47 +5,57 @@
 
 class BSTree
 {
+
 public:
+
 	BSTree();
 
-	~BSTree();
+	~BSTree() { recursiveDestroy(m_pRoot); };
 
-	bool isEmpty() const;
+	bool isEmpty() const { return m_pRoot == 0; };
 
 	unsigned size() const;
 	
-	int height() const;
+	int height() const { return recursiveHeightCalculation(m_pRoot); };
 
-	void insertKey(const int _key);
+	void insertKey(const int _key) { recursiveInsert(m_pRoot, _key); };
 
-	Node * findKey(const int _key) const;
+	void removeKey(const int _key) { recursiveRemove(m_pRoot, _key); };
 
-	//void BSTreeRemoveKey(const BSTree const & _tree, const int _m_key);
+	Node * findKey(const int) const;
 
 private:
+
 	Node * m_pRoot;
 
-	Node * BSTreeCreateNode(const int _key, Node * _node);
+	Node * BSTreeCreateNode(const int, Node * = nullptr);
 
-	void leftRotation(Node * _node);
+	void removeNode(Node *);
 
-	void rightRotation(Node * _node);
+	void leftRotation(Node *);
 
-	void leftThenRightRotation(Node * _node);
+	void rightRotation(Node *);
 
-	void rightThenLeftRotation(Node * _node);
+	void leftThenRightRotation(Node *);
 
-	void balanceTree(Node * _node);
+	void rightThenLeftRotation(Node *);
+
+	Node * findMinKey(Node *) const;
+
+	bool isLeftChild(Node * _node) const { return _node->m_pParent->m_pLeft == _node; };
 
 	// Helpers
 
-	void recursiveDestroy(Node *_node);
+	void recursiveDestroy(Node *);
 
 	void recursiveSizeCalculation(Node const *, unsigned&) const;
 
 	int recursiveHeightCalculation(Node const *) const;
 
-	void recursiveInsertion(Node *, const int _key);
+	void recursiveInsert(Node *, const int);
+
+	void recursiveRemove(Node *, const int);
+
 };
 
 #endif
